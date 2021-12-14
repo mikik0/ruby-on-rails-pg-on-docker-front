@@ -2,20 +2,20 @@
   <div>
     <h1>Task</h1>
     <v-row>
-      <v-col cols="4">
-      <form>
-        <v-text-field
-          v-model="task.title"
-          label="Title"
-        ></v-text-field>
-        <v-textarea
-          v-model="task.content"
-          label="Content"
-        ></v-textarea>
-
-        <v-btn class="mr-4" @click="onSubmit">Create</v-btn>
-      </form>
-      </v-col>
+    <table>
+    <thead>
+        <tr>
+        <th>title</th>
+        <th>content</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="task in tasks" :key="task.id">
+        <td>{{ task }}</td>
+        <td>{{ task.title }}</td>
+        </tr>
+    </tbody>
+    </table>    
       <v-col cols="8">
         <table>
           <tr>
@@ -34,15 +34,23 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  data() {
+  name: 'Tasks',
+  data () {
     return {
-      task: {}
+      tasks: []
     }
   },
-  methods: {
-    onSubmit() {
-    }
+  mounted () {
+    axios.get('http://localhost/tasks')
+      .then(response => {
+        this.tasks = response.data
+        console.log(response.data)
+      })
+      .catch((error)=>{
+      console.log(error)
+    })
   }
 }
-</script> 
+</script>
