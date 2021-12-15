@@ -15,20 +15,7 @@
         <td>{{ task.content }}</td>
         </tr>
     </tbody>
-    </table>    
-      <v-col cols="8">
-        <table>
-          <tr>
-            <th>Title</th>
-            <th>Content</th>
-          </tr>
-          <tr>
-            <td>show</td>
-            <td>Edit</td>
-            <td>Destroy</td>
-          </tr>
-        </table>
-      </v-col>
+    </table>
     </v-row>
   </div>
 </template>
