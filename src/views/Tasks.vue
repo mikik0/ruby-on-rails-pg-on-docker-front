@@ -11,8 +11,8 @@
     </thead>
     <tbody>
         <tr v-for="task in tasks" :key="task.id">
-        <td>{{ task }}</td>
         <td>{{ task.title }}</td>
+        <td>{{ task.content }}</td>
         </tr>
     </tbody>
     </table>    
@@ -44,8 +44,10 @@ export default {
   },
   mounted () {
     axios.get('http://localhost/tasks')
-      .then(response => {
-        this.tasks = response.data
+      .then(response => { 
+        response.data.forEach(task => {
+          this.tasks.push(task)
+        })
         console.log(response.data)
       })
       .catch((error)=>{
