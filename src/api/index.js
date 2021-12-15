@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-export default () => {
-  return axios.create({
+export const axiosBase = axios.create({
     baseURL: 'http://localhost'
   })
-}
