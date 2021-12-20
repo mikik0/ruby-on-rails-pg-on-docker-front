@@ -13,7 +13,10 @@ export default {
   name: 'ShowTaskDetail',
   data () {
     return {
-      task: {}
+      task: {
+        title: '',
+        content: ''
+      }
     }
   },
   mounted () {
