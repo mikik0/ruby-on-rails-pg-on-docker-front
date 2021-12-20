@@ -10,7 +10,7 @@
 <script>
 import {axiosBase} from '../api/index'
 export default {
-  name: 'Show',
+  name: 'ShowTaskDetail',
   data () {
     return {
       task: {}
