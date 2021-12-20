@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import {axiosBase} from '../api/index'
+import {axiosBase} from '../../api/index'
 export default {
   name: 'Tasks',
   data () {
