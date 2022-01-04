@@ -36,16 +36,11 @@ export default {
   name: 'Tasks',
   data () {
     return {
-      tasks: [],
-      title: "",
-      content: ""
+      tasks: {
+        title: '',
+        content: ''
+      }
     }
-  },
-  created () {
-    axiosBase.get('/tasks')
-      .then(response => {
-        this.tasks = response.data
-      })
   },
   methods: {
     addTodo: function () {
@@ -53,16 +48,19 @@ export default {
         alert("タイトルと内容を入力してください")
         return
       }
-      axiosBase.post('/tasks', {
-        title: this.title,
-        content: this.content
-      })
+      axiosBase.post('/tasks', { task: { title: this.title, content: this.content } })
         .then(response => {
-          this.tasks.push(response.data)
+          this.tasks = response.data
           this.title = ""
           this.content = ""
         })
     }
+  },
+  created: function () {
+    axiosBase.get('/tasks')
+      .then(response => {
+        this.tasks = response.data
+      })
   }
 }
 </script>
