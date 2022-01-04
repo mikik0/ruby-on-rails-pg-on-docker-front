@@ -22,6 +22,7 @@
             <td>{{ task.content }}</td>
             <td><router-link :to="'/tasks/' + task.id ">詳細</router-link></td>
             <td><router-link :to="'/tasks/' + task.id + '/edit'">編集</router-link></td>
+            <td><button @click="deleteTodo(task.id)">削除</button></td>
           </tr>
         </tbody>
       </table>
@@ -35,7 +36,9 @@ export default {
   name: 'Tasks',
   data () {
     return {
-      tasks: []
+      tasks: [],
+      title: "",
+      content: ""
     }
   },
   created () {
@@ -45,13 +48,19 @@ export default {
       })
   },
   methods: {
-    addTodo () {
+    addTodo: function () {
+      if (this.title === "" || this.content === "") {
+        alert("タイトルと内容を入力してください")
+        return
+      }
       axiosBase.post('/tasks', {
         title: this.title,
         content: this.content
       })
         .then(response => {
           this.tasks.push(response.data)
+          this.title = ""
+          this.content = ""
         })
     }
   }
