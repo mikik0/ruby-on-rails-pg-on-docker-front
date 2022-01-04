@@ -21,8 +21,8 @@
             <td>{{ task.title }}</td>
             <td>{{ task.content }}</td>
             <td><router-link :to="'/tasks/' + task.id ">詳細</router-link></td>
-            <td><router-link :to="'/tasks/' + task.id + '/edit'">編集</router-link></td>
-            <td><button @click="deleteTodo(task.id)">削除</button></td>
+            <!-- <td><router-link :to="'/tasks/' + task.id + '/edit'">編集</router-link></td> -->
+            <!-- <td><button @click="deleteTodo(task.id)">削除</button></td> -->
           </tr>
         </tbody>
       </table>
@@ -50,7 +50,7 @@ export default {
       }
       axiosBase.post('/tasks', { task: { title: this.title, content: this.content } })
         .then(response => {
-          this.tasks = response.data
+          this.tasks.push(response.data)
           this.title = ""
           this.content = ""
         })
