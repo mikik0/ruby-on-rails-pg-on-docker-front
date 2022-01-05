@@ -20,13 +20,14 @@ export default {
   },
   methods: {
     updateTodo: function () {
+      console.log(this.title)
+      console.log(this.content)
       if (this.title === "" || this.content === "") {
         alert("タイトルと内容を入力してください")
         return
       }
       axiosBase.put('/tasks/' + this.$route.params.id, { task: { title: this.title, content: this.content } })
-        .then(response => {
-          this.tasks.push(response.data)
+        .then(() => {
           this.$router.push('/tasks')
         })
     }

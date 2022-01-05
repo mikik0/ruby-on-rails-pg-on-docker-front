@@ -39,7 +39,9 @@ export default {
       tasks: {
         title: '',
         content: ''
-      }
+      },
+      title: '',
+      content: ''
     }
   },
   methods: {
