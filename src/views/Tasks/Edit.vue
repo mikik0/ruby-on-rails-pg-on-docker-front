@@ -24,7 +24,7 @@ export default {
         alert("タイトルと内容を入力してください")
         return
       }
-      axiosBase.put('/tasks/' + this.$route.params.id, { task: { title: this.title, content: this.content } })
+      axiosBase.put('/tasks/' + this.$route.params.id, { title: this.title, content: this.content })
         .then(() => {
           this.$router.push('/tasks')
         })

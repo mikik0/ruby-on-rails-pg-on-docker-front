@@ -49,7 +49,7 @@ export default {
         alert("タイトルと内容を入力してください")
         return
       }
-      axiosBase.post('/tasks', { task: { title: this.title, content: this.content } })
+      axiosBase.post('/tasks', { title: this.title, content: this.content })
         .then(response => {
           this.tasks.push(response.data)
           this.title = ""
