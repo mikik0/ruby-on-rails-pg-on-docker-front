@@ -1,6 +1,13 @@
 <template>
   <div>
     <h1>Task</h1>
+    <p>新規タスク作成</p>
+    <div>
+      <input v-model="title" type="text" placeholder="">
+      <input v-model="content" type="text" placeholder="">
+      <button @click="addTodo">追加</button>
+    </div>
+    <p>タスク一覧</p>
     <v-row>
       <table>
         <thead>
@@ -28,15 +35,32 @@ export default {
   name: 'Tasks',
   data () {
     return {
-      tasks: []
+      tasks: {
+        title: '',
+        content: ''
+      },
+      title: '',
+      content: ''
     }
   },
-  mounted () {
-    axiosBase.get('/tasks')
-      .then(response => { 
-        response.data.forEach(task => {
-          this.tasks.push(task)
+  methods: {
+    addTodo: function () {
+      if (this.title === "" || this.content === "") {
+        alert("タイトルと内容を入力してください")
+        return
+      }
+      axiosBase.post('/tasks', { title: this.title, content: this.content })
+        .then(response => {
+          this.tasks.push(response.data)
+          this.title = ""
+          this.content = ""
         })
+    }
+  },
+  created: function () {
+    axiosBase.get('/tasks')
+      .then(response => {
+        this.tasks = response.data
       })
   }
 }
