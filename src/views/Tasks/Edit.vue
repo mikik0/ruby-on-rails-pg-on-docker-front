@@ -20,8 +20,6 @@ export default {
   },
   methods: {
     updateTodo: function () {
-      console.log(this.title)
-      console.log(this.content)
       if (this.title === "" || this.content === "") {
         alert("タイトルと内容を入力してください")
         return
